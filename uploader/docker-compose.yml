@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  file-upload-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./uploads:/app/uploads
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - FILE_UPLOAD_DIR=/app/uploads
+    restart: unless-stopped 
