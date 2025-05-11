@@ -57,6 +57,20 @@ npm run test:watch
 npm run build
 ```
 
+## Project Structure
+
+```
+file-upload-api/
+├── src/
+│   ├── __tests__/        # Test files
+│   ├── index.ts          # Main application file
+│   └── server.ts         # Server configuration
+├── uploads/             # Uploaded files directory
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
 ## API Endpoints
 
 ### Upload Files
