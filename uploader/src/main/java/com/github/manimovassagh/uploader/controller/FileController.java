@@ -55,14 +55,12 @@ public class FileController {
             }
         }
 
-        FileUploadResponse response = fileStorageService.storeFiles(files);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(fileStorageService.storeFiles(files));
     }
 
     @GetMapping("/files")
     public ResponseEntity<List<String>> listFiles() {
-        List<String> files = fileStorageService.listFiles();
-        return ResponseEntity.ok(files);
+        return ResponseEntity.ok(fileStorageService.listFiles());
     }
 
     @GetMapping("/files/{filename:.+}")
