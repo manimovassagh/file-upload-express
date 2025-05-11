@@ -1,0 +1,8 @@
+.git
+.gitignore
+target/*
+!target/*.jar
+src
+README.md
+*.md
+.DS_Store 
