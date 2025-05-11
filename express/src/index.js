@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
 const axios = require('axios');
+const FormData = require('form-data');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -42,17 +43,23 @@ app.post('/api/upload', upload.array('files'), async (req, res) => {
       mimeType: file.mimetype
     }));
 
-    // Forward to Spring Boot service
+    // Forward to Spring Boot service using form-data
     const springServiceUrl = process.env.SPRING_SERVICE_URL || 'http://spring-boot-service:8080';
-    await axios.post(`${springServiceUrl}/api/upload`, req.files, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+    const form = new FormData();
+    req.files.forEach(file => {
+      form.append('files', fs.createReadStream(file.path), file.originalname);
+    });
+
+    const response = await axios.post(`${springServiceUrl}/api/upload`, form, {
+      headers: form.getHeaders(),
+      maxContentLength: Infinity,
+      maxBodyLength: Infinity
     });
 
     res.json({
       message: 'Files uploaded successfully',
-      files
+      files,
+      springResponse: response.data
     });
   } catch (error) {
     console.error('Upload error:', error);
