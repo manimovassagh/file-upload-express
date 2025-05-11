@@ -1,0 +1,69 @@
+{
+    "info": {
+      "_postman_id": "26b4d772-0db1-41f2-8cd7-d35a2a97f225",
+      "name": "File Upload API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Upload Multiple Files",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "formdata",
+            "formdata": [
+              {
+                "key": "files",
+                "type": "file",
+                "src": "/path/to/your/file1.jpg"
+              },
+              {
+                "key": "files",
+                "type": "file",
+                "src": "/path/to/your/file2.png"
+              }
+            ]
+          },
+          "url": {
+            "raw": "http://localhost:3000/upload",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["upload"]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "List Uploaded Files",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:3000/files",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["files"]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Download File",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:3000/files/{{filename}}",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["files", "{{filename}}"]
+          }
+        },
+        "response": []
+      }
+    ]
+  }

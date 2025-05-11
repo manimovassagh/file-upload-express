@@ -1,0 +1,32 @@
+### Upload a single file
+POST http://localhost:3000/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary
+
+------WebKitFormBoundary
+Content-Disposition: form-data; name="files"; filename="test.txt"
+Content-Type: text/plain
+
+< ./test.txt
+------WebKitFormBoundary--
+
+### Upload multiple files
+POST http://localhost:3000/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary
+
+------WebKitFormBoundary
+Content-Disposition: form-data; name="files"; filename="test1.txt"
+Content-Type: text/plain
+
+< ./test1.txt
+------WebKitFormBoundary
+Content-Disposition: form-data; name="files"; filename="test2.txt"
+Content-Type: text/plain
+
+< ./test2.txt
+------WebKitFormBoundary--
+
+### List all uploaded files
+GET http://localhost:3000/files
+
+### Download a specific file (replace FILENAME with actual filename from list)
+GET http://localhost:3000/files/FILENAME 
