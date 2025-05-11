@@ -1,10 +1,16 @@
 version: '3.8'
 
+networks:
+  file-upload-network:
+    name: file-upload-network
+    driver: bridge
+
 services:
   file-upload-service:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: file-upload-service
     ports:
       - "8080:8080"
     volumes:
@@ -12,4 +18,22 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - FILE_UPLOAD_DIR=/app/uploads
+    networks:
+      - file-upload-network
+    restart: unless-stopped
+
+  file-upload-frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: file-upload-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_API_URL=http://file-upload-service:8080
+    networks:
+      - file-upload-network
+    depends_on:
+      - file-upload-service
     restart: unless-stopped 
