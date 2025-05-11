@@ -66,9 +66,33 @@ npm run build
 - Maximum file size: 5MB
 - Maximum files: 5
 
+Example Response:
+```json
+{
+  "success": true,
+  "files": [
+    {
+      "filename": "example.jpg",
+      "size": 1024,
+      "mimetype": "image/jpeg"
+    }
+  ]
+}
+```
+
 ### List Files
 - **GET** `/files`
 - Returns array of uploaded filenames
+
+Example Response:
+```json
+{
+  "files": [
+    "example.jpg",
+    "document.pdf"
+  ]
+}
+```
 
 ### Download File
 - **GET** `/files/:filename`
