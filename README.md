@@ -16,7 +16,7 @@ A simple and robust file upload API built with Express.js and TypeScript. This A
 
 ## Prerequisites
 
-- Node.js (v14 or higher)
+- Node.js (v16.0.0 or higher)
 - npm or yarn
 
 ## Installation
