@@ -80,6 +80,13 @@ Example Response:
 }
 ```
 
+Error Response:
+```json
+{
+  "error": "File size exceeds 5MB limit"
+}
+```
+
 ### List Files
 - **GET** `/files`
 - Returns array of uploaded filenames
