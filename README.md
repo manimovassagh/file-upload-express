@@ -1,5 +1,10 @@
 # File Upload API
 
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)](https://nodejs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.x-blue)](https://www.typescriptlang.org)
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/yourusername/file-upload-api)
+
 A simple and robust file upload API built with Express.js and TypeScript. This API allows you to upload multiple files, list uploaded files, and download them.
 
 ## Features
