@@ -6,6 +6,7 @@ A simple and robust file upload API built with Express.js and TypeScript. This A
 
 - Multiple file upload support
 - File type restrictions (images, PDFs, documents)
+- Supported formats: JPG, PNG, GIF, PDF, DOC, DOCX, TXT
 - File size limits (5MB per file)
 - Maximum file count (5 files per upload)
 - List all uploaded files
