@@ -6,11 +6,11 @@ networks:
     driver: bridge
 
 services:
-  file-upload-service:
+  spring-boot-service:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: file-upload-service
+    container_name: spring-boot-service
     ports:
       - "8080:8080"
     volumes:
@@ -22,18 +22,21 @@ services:
       - file-upload-network
     restart: unless-stopped
 
-  file-upload-frontend:
+  express-service:
     build:
-      context: ../frontend
+      context: ../express
       dockerfile: Dockerfile
-    container_name: file-upload-frontend
+    container_name: express-service
     ports:
       - "3000:3000"
+    volumes:
+      - ../express/uploads:/app/uploads
     environment:
       - NODE_ENV=production
-      - REACT_APP_API_URL=http://file-upload-service:8080
+      - UPLOAD_DIR=/app/uploads
+      - SPRING_SERVICE_URL=http://spring-boot-service:8080
     networks:
       - file-upload-network
     depends_on:
-      - file-upload-service
+      - spring-boot-service
     restart: unless-stopped 
