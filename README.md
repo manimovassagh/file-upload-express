@@ -40,6 +40,23 @@ npm start
 
 The server will start on http://localhost:3000
 
+## Development
+
+1. Install development dependencies:
+```bash
+npm install --save-dev
+```
+
+2. Run tests in watch mode:
+```bash
+npm run test:watch
+```
+
+3. Build TypeScript:
+```bash
+npm run build
+```
+
 ## API Endpoints
 
 ### Upload Files
