@@ -126,6 +126,14 @@ Run the test suite:
 npm test
 ```
 
+## Security Considerations
+
+- File size limits are enforced to prevent DoS attacks
+- File type validation prevents malicious file uploads
+- Maximum file count per request prevents server overload
+- Files are stored with unique names to prevent overwrites
+- Regular cleanup of old files is recommended
+
 ## Contributing
 
 1. Fork the repository
