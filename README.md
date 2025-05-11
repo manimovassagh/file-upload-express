@@ -1,172 +1,130 @@
-# File Upload API
+# File Upload Service (Spring Boot & Express)
 
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)](https://nodejs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-4.x-blue)](https://www.typescriptlang.org)
-[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/yourusername/file-upload-api)
+This project demonstrates a dual-backend file upload system using **Spring Boot** (Java) and **Express** (Node.js), both fully dockerized and networked via Docker Compose.
 
+## 🏗️ Architecture
 
-A simple and robust file upload API built with Express.js and TypeScript. This API allows you to upload multiple files, list uploaded files, and download them.
+- **spring-boot-service**: Handles file uploads, storage, listing, and download (Java, port 8080)
+- **express-service**: Accepts file uploads, proxies requests to Spring Boot, and exposes a Node.js API (port 3000)
+- **Docker Compose**: Orchestrates both services and their networking
 
-## Features
+```
+[Client] ──► [Express (3000)] ──► [Spring Boot (8080)]
+```
 
-- Multiple file upload support
-- File type restrictions (images, PDFs, documents)
-- Supported formats: JPG, PNG, GIF, PDF, DOC, DOCX, TXT
-- File size limits (5MB per file)
-- Maximum file count (5 files per upload)
-- List all uploaded files
-- Download files
-- Error handling
-- TypeScript support
-- Jest testing
+## 🚀 Quick Start
 
-## Prerequisites
-
-- Node.js (v16.0.0 or higher)
-- npm or yarn
-
-## Installation
-
-1. Clone the repository:
+### 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/file-upload-api.git
-cd file-upload-api
+git clone https://github.com/manimovassagh/file-upload-express.git
+cd file-upload-express
 ```
 
-2. Install dependencies:
+### 2. **Build & Run with Docker Compose**
 ```bash
-npm install
+docker compose -f uploader/docker-compose.yml up --build -d
 ```
 
-3. Start the server:
+### 3. **Check Health**
+- Express: [http://localhost:3000/health](http://localhost:3000/health)
+- Spring Boot: [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health)
+
+### 4. **Test File Upload (via Express)**
 ```bash
-npm start
+curl -i -X POST -F "files=@uploader/src/test/http/test-files/test1.jpg" http://localhost:3000/api/upload
 ```
 
-The server will start on http://localhost:3000
-
-## Development
-
-1. Install development dependencies:
+### 5. **List Files**
 ```bash
-npm install --save-dev
+curl -i http://localhost:3000/api/files
 ```
 
-2. Run tests in watch mode:
+### 6. **Download a File**
 ```bash
-npm run test:watch
+curl -i http://localhost:3000/api/files/<filename>
 ```
 
-3. Build TypeScript:
+### 7. **Stop Services**
 ```bash
-npm run build
+docker compose -f uploader/docker-compose.yml down
 ```
 
-## Project Structure
+---
+
+## 📦 Project Structure
 
 ```
-file-upload-api/
-├── src/
-│   ├── __tests__/        # Test files
-│   ├── index.ts          # Main application file
-│   └── server.ts         # Server configuration
-├── uploads/             # Uploaded files directory
-├── package.json
-├── tsconfig.json
+file-upload-express/
+├── uploader/                # Spring Boot service (Java)
+│   ├── src/
+│   ├── Dockerfile
+│   └── ...
+├── express/                 # Express service (Node.js)
+│   ├── src/
+│   ├── Dockerfile
+│   └── ...
+├── uploader/docker-compose.yml
 └── README.md
 ```
 
-## API Endpoints
+---
 
-### Upload Files
-- **POST** `/upload`
-- Accepts multiple files
-- Form-data key: `files`
-- Maximum file size: 5MB
-- Maximum files: 5
+## 🛠️ API Endpoints
 
-Example Response:
-```json
-{
-  "success": true,
-  "files": [
-    {
-      "filename": "example.jpg",
-      "size": 1024,
-      "mimetype": "image/jpeg"
-    }
-  ]
-}
-```
+### Express Service (http://localhost:3000)
+- `POST /api/upload` — Upload files (forwards to Spring Boot)
+- `GET /api/files` — List files
+- `GET /api/files/:filename` — Download file
+- `GET /health` — Health check
 
-Error Response:
-```json
-{
-  "error": "File size exceeds 5MB limit"
-}
-```
+### Spring Boot Service (http://localhost:8080)
+- `POST /api/upload` — Upload files
+- `GET /api/files` — List files
+- `GET /api/files/:filename` — Download file
+- `GET /actuator/health` — Health check
 
-### List Files
-- **GET** `/files`
-- Returns array of uploaded filenames
+---
 
-Example Response:
-```json
-{
-  "files": [
-    "example.jpg",
-    "document.pdf"
-  ]
-}
-```
+## 📝 Development
 
-### Download File
-- **GET** `/files/:filename`
-- Downloads the specified file
+- **Spring Boot**: See `uploader/` for Java code, tests, and configs
+- **Express**: See `express/` for Node.js code
+- **Docker Compose**: See `uploader/docker-compose.yml`
 
-## Testing
-
-Run the test suite:
+### Build Spring Boot JAR (if needed)
 ```bash
-npm test
+cd uploader
+./mvnw clean package -DskipTests
 ```
 
-## Troubleshooting
+### Run Spring Boot Locally
+```bash
+cd uploader
+./mvnw spring-boot:run
+```
 
-### Common Issues
+### Run Express Locally
+```bash
+cd express
+npm install
+npm run dev
+```
 
-1. **File Upload Fails**
-   - Check file size (max 5MB)
-   - Verify file type is supported
-   - Ensure uploads directory exists and has write permissions
+---
 
-2. **Server Won't Start**
-   - Verify Node.js version (v16.0.0+)
-   - Check if port 3000 is available
-   - Ensure all dependencies are installed
+## 🤝 Contributing
+- Fork, branch, and PR welcome!
+- Please add tests for new features.
 
-3. **Tests Fail**
-   - Run `npm install` to update dependencies
-   - Clear Jest cache: `npm test -- --clearCache`
-   - Check TypeScript compilation: `npm run build`
+---
 
-## Security Considerations
+## 🧹 Cleanup
+To remove all containers, networks, and volumes:
+```bash
+docker compose -f uploader/docker-compose.yml down -v
+```
 
-- File size limits are enforced to prevent DoS attacks
-- File type validation prevents malicious file uploads
-- Maximum file count per request prevents server overload
-- Files are stored with unique names to prevent overwrites
-- Regular cleanup of old files is recommended
+---
 
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-ISC 
+## 📄 License
+MIT 
