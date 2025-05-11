@@ -126,6 +126,25 @@ Run the test suite:
 npm test
 ```
 
+## Troubleshooting
+
+### Common Issues
+
+1. **File Upload Fails**
+   - Check file size (max 5MB)
+   - Verify file type is supported
+   - Ensure uploads directory exists and has write permissions
+
+2. **Server Won't Start**
+   - Verify Node.js version (v16.0.0+)
+   - Check if port 3000 is available
+   - Ensure all dependencies are installed
+
+3. **Tests Fail**
+   - Run `npm install` to update dependencies
+   - Clear Jest cache: `npm test -- --clearCache`
+   - Check TypeScript compilation: `npm run build`
+
 ## Security Considerations
 
 - File size limits are enforced to prevent DoS attacks
