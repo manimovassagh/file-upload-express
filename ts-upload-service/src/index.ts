@@ -1,7 +1,20 @@
+import cors from 'cors';
 import express, { Request, Response } from 'express';
 import fs from 'fs';
 import multer from 'multer';
 import path from 'path';
+
+const app = express();
+const PORT = 3000;
+
+// Enable CORS
+app.use(cors());
+
+// Parse JSON bodies
+app.use(express.json());
+
+// Parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
 
 // Ensure the uploads folder exists
 const uploadDir = path.join(__dirname, '../uploads');
@@ -47,8 +60,6 @@ const upload = multer({
     files: 5 // Maximum 5 files per upload
   }
 });
-
-const app = express();
 
 // File upload route
 app.post('/upload', upload.array('files'), (req: Request, res: Response): void => {
@@ -114,6 +125,11 @@ app.use((err: Error, _req: Request, res: Response, _next: express.NextFunction):
     }
   }
   res.status(500).json({ error: err.message || 'Internal server error' });
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`✅ Server running on http://localhost:${PORT}`);
 });
 
 export default app;
