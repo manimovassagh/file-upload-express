@@ -1,16 +1,19 @@
-# File Upload Service (Spring Boot & Express)
+# File Upload Services
 
-This project demonstrates a dual-backend file upload system using **Spring Boot** (Java) and **Express** (Node.js), both fully dockerized and networked via Docker Compose.
+This project provides two independent file upload services implemented in **Spring Boot** (Java) and **TypeScript/Express**, both fully dockerized.
 
 ## 🏗️ Architecture
 
-- **spring-boot-service**: Handles file uploads, storage, listing, and download (Java, port 8080)
-- **express-service**: Accepts file uploads, proxies requests to Spring Boot, and exposes a Node.js API (port 3000)
-- **Docker Compose**: Orchestrates both services and their networking
+Two independent services that provide similar functionality:
+- **Spring Boot Service**: Java-based file upload service (port 8080)
+- **TypeScript Service**: Node.js/Express-based file upload service (port 3000)
 
-```
-[Client] ──► [Express (3000)] ──► [Spring Boot (8080)]
-```
+Both services support:
+- Multiple file uploads
+- File type validation
+- File size limits
+- File listing
+- File downloads
 
 ## 🚀 Quick Start
 
@@ -20,111 +23,119 @@ git clone https://github.com/manimovassagh/file-upload-express.git
 cd file-upload-express
 ```
 
-### 2. **Build & Run with Docker Compose**
+### 2. **Build & Run Spring Boot Service**
 ```bash
-docker compose -f uploader/docker-compose.yml up --build -d
+cd uploader
+docker build -t file-upload-spring .
+docker run -d -p 8080:8080 --name spring-upload file-upload-spring
 ```
 
-### 3. **Check Health**
-- Express: [http://localhost:3000/health](http://localhost:3000/health)
-- Spring Boot: [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health)
-
-### 4. **Test File Upload (via Express)**
+### 3. **Build & Run TypeScript Service**
 ```bash
-curl -i -X POST -F "files=@uploader/src/test/http/test-files/test1.jpg" http://localhost:3000/api/upload
+cd ts-upload-service
+docker build -t file-upload-ts .
+docker run -d -p 3000:3000 --name ts-upload file-upload-ts
 ```
 
-### 5. **List Files**
+### 4. **Test the Services**
+
+#### Spring Boot Service (port 8080):
 ```bash
-curl -i http://localhost:3000/api/files
+# Upload files
+curl -X POST -F "files=@test.txt" -F "files=@test.pdf" http://localhost:8080/api/upload
+
+# List files
+curl http://localhost:8080/api/files
+
+# Download a file
+curl -O http://localhost:8080/api/files/<filename>
 ```
 
-### 6. **Download a File**
+#### TypeScript Service (port 3000):
 ```bash
-curl -i http://localhost:3000/api/files/<filename>
-```
+# Upload files
+curl -X POST -F "files=@test.txt" -F "files=@test.pdf" http://localhost:3000/upload
 
-### 7. **Stop Services**
-```bash
-docker compose -f uploader/docker-compose.yml down
-```
+# List files
+curl http://localhost:3000/files
 
----
+# Download a file
+curl -O http://localhost:3000/files/<filename>
+```
 
 ## 📦 Project Structure
 
 ```
-file-upload-express/
-├── uploader/                # Spring Boot service (Java)
+file-upload/
+├── uploader/                # Spring Boot service
 │   ├── src/
+│   │   ├── main/
+│   │   └── test/
 │   ├── Dockerfile
-│   └── ...
-├── express/                 # Express service (Node.js)
+│   └── pom.xml
+├── ts-upload-service/       # TypeScript service
 │   ├── src/
+│   │   ├── index.ts
+│   │   └── __tests__/
 │   ├── Dockerfile
-│   └── ...
-├── uploader/docker-compose.yml
+│   └── package.json
 └── README.md
 ```
 
----
-
 ## 🛠️ API Endpoints
 
-### Express Service (http://localhost:3000)
-- `POST /api/upload` — Upload files (forwards to Spring Boot)
-- `GET /api/files` — List files
-- `GET /api/files/:filename` — Download file
-- `GET /health` — Health check
-
 ### Spring Boot Service (http://localhost:8080)
-- `POST /api/upload` — Upload files
+- `POST /api/upload` — Upload files (max 5 files, 5MB each)
 - `GET /api/files` — List files
 - `GET /api/files/:filename` — Download file
-- `GET /actuator/health` — Health check
 
----
+### TypeScript Service (http://localhost:3000)
+- `POST /upload` — Upload files (max 5 files, 5MB each)
+- `GET /files` — List files
+- `GET /files/:filename` — Download file
 
 ## 📝 Development
 
-- **Spring Boot**: See `uploader/` for Java code, tests, and configs
-- **Express**: See `express/` for Node.js code
-- **Docker Compose**: See `uploader/docker-compose.yml`
-
-### Build Spring Boot JAR (if needed)
+### Spring Boot Service
 ```bash
 cd uploader
-./mvnw clean package -DskipTests
+./mvnw clean test    # Run tests
+./mvnw spring-boot:run   # Run locally
 ```
 
-### Run Spring Boot Locally
+### TypeScript Service
 ```bash
-cd uploader
-./mvnw spring-boot:run
-```
-
-### Run Express Locally
-```bash
-cd express
+cd ts-upload-service
 npm install
-npm run dev
+npm test         # Run tests
+npm start        # Run locally
 ```
 
----
+## 🔒 Security Features
 
-## 🤝 Contributing
-- Fork, branch, and PR welcome!
-- Please add tests for new features.
+Both services implement:
+- File type validation (images, PDFs, documents only)
+- File size limits (5MB per file)
+- Maximum file count (5 files per upload)
+- Secure file storage
+- Error handling
 
----
+## 🧪 Testing
+
+Both services include:
+- Unit tests
+- Integration tests
+- File upload/download tests
+- Error handling tests
 
 ## 🧹 Cleanup
-To remove all containers, networks, and volumes:
 ```bash
-docker compose -f uploader/docker-compose.yml down -v
-```
+# Stop and remove containers
+docker rm -f spring-upload ts-upload
 
----
+# Remove images
+docker rmi file-upload-spring file-upload-ts
+```
 
 ## 📄 License
 MIT 
