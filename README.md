@@ -48,19 +48,6 @@ Both services support:
 - Express.js
 - Docker
 
-## 🔧 Top 10 MCP Tools
-
-1. **Tool 1**: Description of Tool 1
-2. **Tool 2**: Description of Tool 2
-3. **Tool 3**: Description of Tool 3
-4. **Tool 4**: Description of Tool 4
-5. **Tool 5**: Description of Tool 5
-6. **Tool 6**: Description of Tool 6
-7. **Tool 7**: Description of Tool 7
-8. **Tool 8**: Description of Tool 8
-9. **Tool 9**: Description of Tool 9
-10. **Tool 10**: Description of Tool 10
-
 ## 📋 Prerequisites
 
 Before you begin, ensure you have the following installed:
