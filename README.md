@@ -208,3 +208,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📬 Contact
 
 For questions or support, contact [your-email@example.com](mailto:your-email@example.com).
+
+## ❓ FAQ
+
+**Q: Can I upload files larger than 5MB?**
+A: No, the maximum file size is 5MB per file.
+
+**Q: What file types are allowed?**
+A: Images, PDFs, and documents only.
