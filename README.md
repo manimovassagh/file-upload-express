@@ -241,3 +241,7 @@ A: No, the maximum file size is 5MB per file.
 
 **Q: What file types are allowed?**
 A: Images, PDFs, and documents only.
+
+## 🙏 Thanks
+
+Special thanks to all contributors and users of this project!
