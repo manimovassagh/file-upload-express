@@ -202,6 +202,10 @@ docker rmi file-upload-spring file-upload-ts
 - No support for file versioning.
 - No authentication/authorization implemented.
 
+## 📝 Changelog
+
+- v1.0.0: Initial release with Spring Boot and TypeScript services.
+
 ## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](https://opensource.org/licenses/MIT) file for details.
