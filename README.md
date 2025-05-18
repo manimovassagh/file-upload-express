@@ -113,6 +113,10 @@ file-upload/
 └── README.md
 ```
 
+- `uploader/`: Java Spring Boot file upload service
+- `ts-upload-service/`: Node.js/TypeScript file upload service
+- `README.md`: Project documentation
+
 ## 🛠️ API Endpoints
 
 ### Spring Boot Service (<http://localhost:8080>)
