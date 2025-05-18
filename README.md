@@ -2,6 +2,17 @@
 
 This project provides two independent file upload services implemented in **Spring Boot** (Java) and **TypeScript/Express**, both fully dockerized.
 
+## 📑 Table of Contents
+- [Architecture](#-architecture)
+- [Quick Start](#-quick-start)
+- [Project Structure](#-project-structure)
+- [API Endpoints](#️-api-endpoints)
+- [Development](#-development)
+- [Security Features](#-security-features)
+- [Testing](#-testing)
+- [Cleanup](#-cleanup)
+- [License](#-license)
+
 ## 🏗️ Architecture
 
 Two independent services that provide similar functionality:
