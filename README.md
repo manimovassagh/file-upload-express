@@ -135,6 +135,8 @@ Below are the main API endpoints for each service:
 
 ## 📝 Development
 
+To run tests and start the development server for each service:
+
 ### Spring Boot Service
 
 ```bash
