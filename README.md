@@ -219,6 +219,13 @@ Please be respectful and follow our [Code of Conduct](CODE_OF_CONDUCT.md) when p
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+### How to Contribute
+
+1. Fork the repository
+2. Create a new branch
+3. Make your changes
+4. Open a Pull Request
+
 ## 🌐 Community
 
 Join our community discussions on [GitHub Discussions](https://github.com/manimovassagh/file-upload-express/discussions).
