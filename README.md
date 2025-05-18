@@ -1,5 +1,10 @@
 # File Upload Services
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.7.x-green.svg)](https://spring.io/projects/spring-boot)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.x-blue.svg)](https://www.typescriptlang.org/)
+[![Docker](https://img.shields.io/badge/Docker-20.x-blue.svg)](https://www.docker.com/)
+
 This project provides two independent file upload services implemented in **Spring Boot** (Java) and **TypeScript/Express**, both fully dockerized.
 
 ## 📑 Table of Contents
