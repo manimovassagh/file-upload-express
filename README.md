@@ -40,6 +40,13 @@ Both services support:
 - File listing
 - File downloads
 
+## 🛠️ Tech Stack
+
+- Java 17 & Spring Boot 2.7.x
+- Node.js 16+ & TypeScript 4.x
+- Express.js
+- Docker
+
 ## 📋 Prerequisites
 
 Before you begin, ensure you have the following installed:
