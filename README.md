@@ -119,6 +119,8 @@ file-upload/
 
 ## 🛠️ API Endpoints
 
+Below are the main API endpoints for each service:
+
 ### Spring Boot Service (<http://localhost:8080>)
 
 - `POST /api/upload` — Upload files (max 5 files, 5MB each)
