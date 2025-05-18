@@ -214,6 +214,10 @@ This project is licensed under the MIT License. See the [LICENSE](https://openso
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+## 🌐 Community
+
+Join our community discussions on [GitHub Discussions](https://github.com/manimovassagh/file-upload-express/discussions).
+
 ## 📬 Contact
 
 For questions or support, contact [your-email@example.com](mailto:your-email@example.com).
