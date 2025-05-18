@@ -197,3 +197,7 @@ This project is licensed under the MIT License. See the [LICENSE](https://openso
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📬 Contact
+
+For questions or support, contact [your-email@example.com](mailto:your-email@example.com).
