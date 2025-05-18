@@ -67,7 +67,7 @@ app.post('/api/upload', upload.array('files'), async (req, res) => {
   }
 });
 
-app.get('/api/files', async (req, res) => {
+app.get('/api/files', async (_req, res) => {
   try {
     const springServiceUrl = process.env.SPRING_SERVICE_URL || 'http://spring-boot-service:8080';
     const response = await axios.get(`${springServiceUrl}/api/files`);
