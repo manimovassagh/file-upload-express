@@ -156,7 +156,7 @@ npm start        # Run locally
 
 ## 🔒 Security Features
 
-Both services implement:
+Both services implement several security measures:
 
 - File type validation (images, PDFs, documents only)
 - File size limits (5MB per file)
