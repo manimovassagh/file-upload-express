@@ -33,6 +33,14 @@ Both services support:
 - File listing
 - File downloads
 
+## 📋 Prerequisites
+
+Before you begin, ensure you have the following installed:
+- [Docker](https://docs.docker.com/get-docker/) (version 20.x or higher)
+- [Git](https://git-scm.com/downloads) (version 2.x or higher)
+- [Java 17](https://adoptium.net/) (for local Spring Boot development)
+- [Node.js](https://nodejs.org/) (version 16.x or higher, for local TypeScript development)
+
 ## 🚀 Quick Start
 
 ### 1. **Clone the repository**
