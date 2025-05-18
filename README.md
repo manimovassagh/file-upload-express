@@ -17,6 +17,7 @@ This project provides two independent file upload services implemented in **Spri
 - [Testing](#-testing)
 - [Cleanup](#-cleanup)
 - [License](#-license)
+- [Contributing](#-contributing)
 
 _Note: This project is for demonstration purposes._
 
@@ -188,3 +189,7 @@ docker rmi file-upload-spring file-upload-ts
 ## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](https://opensource.org/licenses/MIT) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
