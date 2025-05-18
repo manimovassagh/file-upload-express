@@ -19,6 +19,10 @@ This project provides two independent file upload services implemented in **Spri
 - [License](#-license)
 - [Contributing](#-contributing)
 
+## 🖼️ Demo
+
+![Demo Screenshot](demo-screenshot.png)
+
 _Note: This project is for demonstration purposes._
 
 ## 🏗️ Architecture
