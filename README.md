@@ -197,6 +197,11 @@ docker rm -f spring-upload ts-upload
 docker rmi file-upload-spring file-upload-ts
 ```
 
+## 🐞 Known Issues
+
+- No support for file versioning.
+- No authentication/authorization implemented.
+
 ## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](https://opensource.org/licenses/MIT) file for details.
