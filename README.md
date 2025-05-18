@@ -185,4 +185,4 @@ docker rmi file-upload-spring file-upload-ts
 
 ## 📄 License
 
-MIT
+This project is licensed under the MIT License. See the [LICENSE](https://opensource.org/licenses/MIT) file for details.
