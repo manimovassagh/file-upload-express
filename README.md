@@ -18,6 +18,8 @@ This project provides two independent file upload services implemented in **Spri
 - [Cleanup](#-cleanup)
 - [License](#-license)
 
+_Note: This project is for demonstration purposes._
+
 ## 🏗️ Architecture
 
 Two independent services that provide similar functionality:
